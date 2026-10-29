@@ -1,0 +1,75 @@
+{
+  "one_sample_t": {
+    "popmean": 4.0,
+    "sample_mean": 3.8778,
+    "sample_std": 0.8506,
+    "t_stat": -31.5073,
+    "p_value": 1.092250448048929e-215,
+    "n": 48080,
+    "decision": "Reject H0 (Significantly different from 4.0)"
+  },
+  "welch_two_sample_t": {
+    "shallow_mean": 3.8112,
+    "shallow_n": 37663,
+    "deep_mean": 4.3527,
+    "deep_n": 2072,
+    "t_stat": -62.527,
+    "p_value": 0.0,
+    "decision": "Reject H0 (Depth significantly affects magnitude)"
+  },
+  "anova": {
+    "f_stat": 648.0095,
+    "p_value": 1.9927385308313215e-278,
+    "shallow_mean": 3.8112,
+    "inter_mean": 4.0605,
+    "deep_mean": 4.3527,
+    "decision": "Reject H0 (Significant difference across depth categories)"
+  },
+  "chi_square": {
+    "chi2_stat": 1696.8706,
+    "dof": 4,
+    "p_value": 0.0,
+    "contingency_observed": {
+      "High (>6)": {
+        "Deep": 8,
+        "Intermediate": 24,
+        "Shallow": 142
+      },
+      "Low (\u22644)": {
+        "Deep": 227,
+        "Intermediate": 2583,
+        "Shallow": 17933
+      },
+      "Moderate (>4\u20136)": {
+        "Deep": 1837,
+        "Intermediate": 5738,
+        "Shallow": 19588
+      }
+    },
+    "contingency_expected": {
+      "High (>6)": {
+        "Deep": 7.5,
+        "Intermediate": 30.2,
+        "Shallow": 136.3
+      },
+      "Low (\u22644)": {
+        "Deep": 893.92,
+        "Intermediate": 3600.26,
+        "Shallow": 16248.83
+      },
+      "Moderate (>4\u20136)": {
+        "Deep": 1170.59,
+        "Intermediate": 4714.54,
+        "Shallow": 21277.87
+      }
+    },
+    "decision": "Reject H0 (Depth and Magnitude categories are dependent)"
+  },
+  "correlation": {
+    "covariance": 15.6005,
+    "pearson_r": 0.168,
+    "pearson_p": 3.454997130778225e-301,
+    "spearman_r": 0.1696,
+    "spearman_p": 2.8293046757091463e-307
+  }
+}

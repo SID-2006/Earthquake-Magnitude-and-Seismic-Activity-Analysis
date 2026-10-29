@@ -1,0 +1,11 @@
+event_id,location_name,depth,latitude,longitude,month,hour
+EQ-JP-001,"Tokyo Bay / Kanto Region, Japan",35.0,35.6895,139.6917,3,14
+EQ-US-002,"San Andreas Fault, California, USA",8.5,37.7749,-122.4194,4,5
+EQ-CL-003,"Off Coast of Bio-Bio, Chile",25.0,-36.8201,-73.0444,5,19
+EQ-ID-004,"Sunda Megathrust, Sumatra, Indonesia",30.0,3.1764,95.9814,12,7
+EQ-NP-005,"Gorkha Himalayan Belt, Nepal",15.0,27.7172,85.3240,4,11
+EQ-NZ-006,"Alpine Fault, South Island, New Zealand",10.0,-43.5321,172.6362,2,12
+EQ-TR-007,"North Anatolian Fault Zone, Turkey",12.0,41.0082,28.9784,8,3
+EQ-IS-008,"Reykjanes Volcanic Rift, Iceland",5.0,63.8500,-22.4300,11,17
+EQ-TO-009,"Tonga Trench Subduction Zone",550.0,-21.1789,-175.1982,9,22
+EQ-MP-010,"Mariana Trench Deep Seismicity",180.0,11.3496,142.1995,7,8

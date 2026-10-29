@@ -1,0 +1,410 @@
+{
+  "0": {
+    "cluster_id": 0,
+    "name": "NW Pacific / Kuril-Kamchatka-Japan Arc",
+    "description": "High-velocity subduction zone responsible for massive megathrust events.",
+    "tectonic_type": "Subduction Megathrust",
+    "centroid": {
+      "latitude": 45.39,
+      "longitude": 150.65
+    },
+    "total_records": 5824,
+    "percentage_of_catalog": 12.11,
+    "mean_mag": 4.5,
+    "max_mag": 8.8,
+    "p90_mag": 5.0,
+    "high_mag_ratio": 0.9966,
+    "severe_mag_ratio": 0.0089,
+    "mean_depth": 47.24,
+    "max_depth": 619.62,
+    "top_regions": {
+      "Russia": 3762,
+      "Japan": 1501,
+      "Japan region": 355,
+      "Kuril Islands": 91
+    },
+    "mae": 0.2731,
+    "mse": 0.1495,
+    "rmse": 0.3866,
+    "r2": 0.0653,
+    "feature_importances": [
+      {
+        "Feature": "depth",
+        "Importance": 0.2691
+      },
+      {
+        "Feature": "longitude",
+        "Importance": 0.2594
+      },
+      {
+        "Feature": "latitude",
+        "Importance": 0.2517
+      },
+      {
+        "Feature": "hour",
+        "Importance": 0.1275
+      },
+      {
+        "Feature": "month",
+        "Importance": 0.0924
+      }
+    ]
+  },
+  "1": {
+    "cluster_id": 1,
+    "name": "Caribbean Basin & Antilles Fault System",
+    "description": "Complex strike-slip and subduction boundary with moderate to severe seismicity.",
+    "tectonic_type": "Transform / Oceanic Trench",
+    "centroid": {
+      "latitude": 15.81,
+      "longitude": -69.76
+    },
+    "total_records": 4643,
+    "percentage_of_catalog": 9.66,
+    "mean_mag": 3.74,
+    "max_mag": 7.6,
+    "p90_mag": 4.7,
+    "high_mag_ratio": 0.4219,
+    "severe_mag_ratio": 0.0043,
+    "mean_depth": 38.12,
+    "max_depth": 648.3,
+    "top_regions": {
+      "Puerto Rico": 1774,
+      "Dominican Republic": 486,
+      "U.S. Virgin Islands": 421,
+      "Mexico": 198
+    },
+    "mae": 0.2458,
+    "mse": 0.116,
+    "rmse": 0.3406,
+    "r2": 0.8024,
+    "feature_importances": [
+      {
+        "Feature": "latitude",
+        "Importance": 0.6824
+      },
+      {
+        "Feature": "longitude",
+        "Importance": 0.2533
+      },
+      {
+        "Feature": "depth",
+        "Importance": 0.047
+      },
+      {
+        "Feature": "hour",
+        "Importance": 0.0097
+      },
+      {
+        "Feature": "month",
+        "Importance": 0.0076
+      }
+    ]
+  },
+  "2": {
+    "cluster_id": 2,
+    "name": "SE Asia / Sunda-Banda & Coral Triangle",
+    "description": "Indo-Australian & Sunda plate convergence, high frequency of tsunami-generating earthquakes.",
+    "tectonic_type": "Subduction Zone",
+    "centroid": {
+      "latitude": 3.57,
+      "longitude": 127.61
+    },
+    "total_records": 7936,
+    "percentage_of_catalog": 16.51,
+    "mean_mag": 4.5,
+    "max_mag": 7.7,
+    "p90_mag": 5.0,
+    "high_mag_ratio": 0.9855,
+    "severe_mag_ratio": 0.0072,
+    "mean_depth": 72.2,
+    "max_depth": 639.5,
+    "top_regions": {
+      "Indonesia": 2480,
+      "Philippines": 1419,
+      "Papua New Guinea": 1218,
+      "Taiwan": 549
+    },
+    "mae": 0.2693,
+    "mse": 0.137,
+    "rmse": 0.3702,
+    "r2": 0.0521,
+    "feature_importances": [
+      {
+        "Feature": "depth",
+        "Importance": 0.3696
+      },
+      {
+        "Feature": "latitude",
+        "Importance": 0.2386
+      },
+      {
+        "Feature": "longitude",
+        "Importance": 0.2193
+      },
+      {
+        "Feature": "hour",
+        "Importance": 0.1065
+      },
+      {
+        "Feature": "month",
+        "Importance": 0.0661
+      }
+    ]
+  },
+  "3": {
+    "cluster_id": 3,
+    "name": "Alpine-Himalayan & Mediterranean Belt",
+    "description": "Continental collision zone (Eurasian-African-Indian plates) with shallow destructive ruptures.",
+    "tectonic_type": "Continental Collision",
+    "centroid": {
+      "latitude": 26.83,
+      "longitude": 52.7
+    },
+    "total_records": 3795,
+    "percentage_of_catalog": 7.89,
+    "mean_mag": 4.39,
+    "max_mag": 7.1,
+    "p90_mag": 4.8,
+    "high_mag_ratio": 0.9784,
+    "severe_mag_ratio": 0.0034,
+    "mean_depth": 27.9,
+    "max_depth": 490.23,
+    "top_regions": {
+      "Greece": 667,
+      "China": 372,
+      "Ethiopia": 349,
+      "Afghanistan": 312
+    },
+    "mae": 0.2255,
+    "mse": 0.0968,
+    "rmse": 0.3111,
+    "r2": 0.0883,
+    "feature_importances": [
+      {
+        "Feature": "latitude",
+        "Importance": 0.3723
+      },
+      {
+        "Feature": "longitude",
+        "Importance": 0.3049
+      },
+      {
+        "Feature": "depth",
+        "Importance": 0.1345
+      },
+      {
+        "Feature": "hour",
+        "Importance": 0.1162
+      },
+      {
+        "Feature": "month",
+        "Importance": 0.0721
+      }
+    ]
+  },
+  "4": {
+    "cluster_id": 4,
+    "name": "North America Continental & San Andreas",
+    "description": "Continental transform boundary and Basin & Range extensional province; shallow crustal events.",
+    "tectonic_type": "Continental Transform / Extensional",
+    "centroid": {
+      "latitude": 36.68,
+      "longitude": -113.37
+    },
+    "total_records": 5436,
+    "percentage_of_catalog": 11.31,
+    "mean_mag": 3.02,
+    "max_mag": 7.0,
+    "p90_mag": 3.82,
+    "high_mag_ratio": 0.0855,
+    "severe_mag_ratio": 0.0007,
+    "mean_depth": 8.8,
+    "max_depth": 107.46,
+    "top_regions": {
+      "CA": 1940,
+      "Texas": 600,
+      "New Mexico": 517,
+      "Nevada": 361
+    },
+    "mae": 0.2971,
+    "mse": 0.1595,
+    "rmse": 0.3994,
+    "r2": 0.4903,
+    "feature_importances": [
+      {
+        "Feature": "latitude",
+        "Importance": 0.7064
+      },
+      {
+        "Feature": "longitude",
+        "Importance": 0.1903
+      },
+      {
+        "Feature": "depth",
+        "Importance": 0.0472
+      },
+      {
+        "Feature": "hour",
+        "Importance": 0.0354
+      },
+      {
+        "Feature": "month",
+        "Importance": 0.0207
+      }
+    ]
+  },
+  "5": {
+    "cluster_id": 5,
+    "name": "SW Pacific / Tonga-Kermadec-Fiji Trench",
+    "description": "Deepest Wadati-Benioff subduction zone on Earth with intense deep-mantle seismicity.",
+    "tectonic_type": "Deep Ocean Trench",
+    "centroid": {
+      "latitude": -22.96,
+      "longitude": 176.64
+    },
+    "total_records": 5130,
+    "percentage_of_catalog": 10.67,
+    "mean_mag": 4.52,
+    "max_mag": 7.3,
+    "p90_mag": 5.0,
+    "high_mag_ratio": 0.9942,
+    "severe_mag_ratio": 0.0082,
+    "mean_depth": 204.88,
+    "max_depth": 671.04,
+    "top_regions": {
+      "Tonga": 943,
+      "Vanuatu": 683,
+      "south of the Fiji Islands": 655,
+      "Fiji": 426
+    },
+    "mae": 0.2619,
+    "mse": 0.1333,
+    "rmse": 0.3651,
+    "r2": 0.1301,
+    "feature_importances": [
+      {
+        "Feature": "depth",
+        "Importance": 0.3896
+      },
+      {
+        "Feature": "latitude",
+        "Importance": 0.2521
+      },
+      {
+        "Feature": "longitude",
+        "Importance": 0.1855
+      },
+      {
+        "Feature": "hour",
+        "Importance": 0.1078
+      },
+      {
+        "Feature": "month",
+        "Importance": 0.065
+      }
+    ]
+  },
+  "6": {
+    "cluster_id": 6,
+    "name": "South America / Andean Subduction & Chile",
+    "description": "Nazca plate subducting under South American plate; historically produces the largest earthquakes.",
+    "tectonic_type": "Oceanic-Continental Subduction",
+    "centroid": {
+      "latitude": -32.8,
+      "longitude": -61.93
+    },
+    "total_records": 3136,
+    "percentage_of_catalog": 6.52,
+    "mean_mag": 4.53,
+    "max_mag": 7.6,
+    "p90_mag": 5.1,
+    "high_mag_ratio": 0.9821,
+    "severe_mag_ratio": 0.0073,
+    "mean_depth": 73.19,
+    "max_depth": 616.55,
+    "top_regions": {
+      "Chile": 1011,
+      "Argentina": 538,
+      "South Sandwich Islands region": 527,
+      "Peru": 305
+    },
+    "mae": 0.2679,
+    "mse": 0.1308,
+    "rmse": 0.3617,
+    "r2": 0.162,
+    "feature_importances": [
+      {
+        "Feature": "longitude",
+        "Importance": 0.3207
+      },
+      {
+        "Feature": "latitude",
+        "Importance": 0.2892
+      },
+      {
+        "Feature": "depth",
+        "Importance": 0.2393
+      },
+      {
+        "Feature": "hour",
+        "Importance": 0.0864
+      },
+      {
+        "Feature": "month",
+        "Importance": 0.0644
+      }
+    ]
+  },
+  "7": {
+    "cluster_id": 7,
+    "name": "North Pacific / Alaska-Aleutians & Hawaii",
+    "description": "Aleutian megathrust subduction arc and Hawaiian volcanic hotspot seismicity.",
+    "tectonic_type": "Subduction Arc & Volcanic Hotspot",
+    "centroid": {
+      "latitude": 50.89,
+      "longitude": -162.61
+    },
+    "total_records": 12180,
+    "percentage_of_catalog": 25.33,
+    "mean_mag": 3.01,
+    "max_mag": 7.3,
+    "p90_mag": 3.7,
+    "high_mag_ratio": 0.0635,
+    "severe_mag_ratio": 0.0008,
+    "mean_depth": 36.78,
+    "max_depth": 267.81,
+    "top_regions": {
+      "Alaska": 10837,
+      "Hawaii": 1151,
+      "Canada": 53,
+      "Russia": 36
+    },
+    "mae": 0.3481,
+    "mse": 0.2336,
+    "rmse": 0.4833,
+    "r2": 0.1681,
+    "feature_importances": [
+      {
+        "Feature": "latitude",
+        "Importance": 0.3581
+      },
+      {
+        "Feature": "longitude",
+        "Importance": 0.292
+      },
+      {
+        "Feature": "depth",
+        "Importance": 0.1956
+      },
+      {
+        "Feature": "hour",
+        "Importance": 0.0902
+      },
+      {
+        "Feature": "month",
+        "Importance": 0.0641
+      }
+    ]
+  }
+}
