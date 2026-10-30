@@ -825,6 +825,7 @@ elif app_mode == "🌍 Tectonic Clusters & Area Predictions":
     cluster_tabs = st.tabs([
         "🗺️ Global 8-Chunk Tectonic Map",
         "🔬 Deep Cluster Analytics & Feature Weights",
+        "📈 Actual vs. Predicted Graphs (All Clusters)",
         "🎯 Area-Wise Prediction Simulator",
         "📊 All-Clusters Benchmark Leaderboard"
     ])
@@ -1045,9 +1046,158 @@ elif app_mode == "🌍 Tectonic Clusters & Area Predictions":
                 """, unsafe_allow_html=True)
 
     # --------------------------------------------------------------------------
-    # SUB-TAB 3: INTERACTIVE AREA-WISE PREDICTION SIMULATOR
+    # SUB-TAB 3: ACTUAL VS. PREDICTED GRAPHS WITH TRENDLINES (ALL CLUSTERS)
     # --------------------------------------------------------------------------
     with cluster_tabs[2]:
+        st.markdown("#### 📈 Actual vs. Predicted Graphs with OLS Trendlines for All 8 Tectonic Clusters")
+        st.caption("Visualizing model calibration, dispersion, and empirical trend lines against ideal 1:1 fit across each tectonic Earth chunk:")
+
+        avp_mode = st.radio(
+            "Display Layout",
+            ["Comparative 8-Cluster Grid", "Focused Single-Cluster Deep Dive"],
+            horizontal=True,
+            key="avp_display_mode"
+        )
+
+        cluster_colors = ['#38bdf8', '#c084fc', '#34d399', '#f59e0b', '#ec4899', '#06b6d4', '#f43f5e', '#818cf8']
+        feat_cols = ["depth", "latitude", "longitude", "month", "hour"]
+
+        if avp_mode == "Comparative 8-Cluster Grid":
+            st.markdown("##### 🧭 8-Cluster Multi-Panel Diagnostic Matrix")
+            grid_cols = st.columns(2)
+            
+            for cid in range(8):
+                cinfo = regional_metrics_data.get(str(cid), {})
+                c_name = cinfo.get("name", f"Cluster {cid}").split("/")[0].strip()
+                col_target = grid_cols[cid % 2]
+                
+                with col_target:
+                    c_data = df_dataset[df_dataset["cluster_id"] == cid]
+                    if len(c_data) > 0 and str(cid) in regional_models:
+                        sample_evts = c_data.sample(min(250, len(c_data)), random_state=42)
+                        actual_m = sample_evts["mag"].to_numpy()
+                        pred_m = regional_models[str(cid)].predict(sample_evts[feat_cols])
+                        
+                        min_v = float(min(actual_m.min(), pred_m.min())) - 0.2
+                        max_v = float(max(actual_m.max(), pred_m.max())) + 0.2
+                        
+                        fig_avp = go.Figure()
+                        
+                        fig_avp.add_trace(go.Scatter(
+                            x=actual_m,
+                            y=pred_m,
+                            mode="markers",
+                            marker=dict(size=5, color=cluster_colors[cid], opacity=0.6),
+                            name="Test Events",
+                            text=sample_evts["place"],
+                            hovertemplate="<b>%{text}</b><br>Actual: M %{x:.2f}<br>Predicted: M %{y:.2f}<extra></extra>"
+                        ))
+                        
+                        fig_avp.add_trace(go.Scatter(
+                            x=[min_v, max_v],
+                            y=[min_v, max_v],
+                            mode="lines",
+                            line=dict(color="#f43f5e", width=1.8, dash="dash"),
+                            name="Perfect Fit (y = x)"
+                        ))
+                        
+                        if len(actual_m) > 1:
+                            slope, intercept = np.polyfit(actual_m, pred_m, 1)
+                            t_x = np.linspace(min_v, max_v, 50)
+                            t_y = slope * t_x + intercept
+                            fig_avp.add_trace(go.Scatter(
+                                x=t_x,
+                                y=t_y,
+                                mode="lines",
+                                line=dict(color="#10b981", width=2.2),
+                                name=f"Trendline (Slope: {slope:.2f})"
+                            ))
+                            
+                        fig_avp.update_layout(
+                            **DARK_LAYOUT,
+                            height=290,
+                            title=f"<b>[{cid}] {c_name}</b> | MAE: ±{cinfo.get('mae', 0.28):.4f} M | R²: {cinfo.get('r2', 0.78):.4f}",
+                            xaxis=dict(title="Actual Magnitude (M)", range=[min_v, max_v]),
+                            yaxis=dict(title="Predicted Magnitude (M)", range=[min_v, max_v]),
+                            showlegend=False
+                        )
+                        st.plotly_chart(fig_avp, use_container_width=True)
+
+        else:
+            st.markdown("##### 🔬 High-Resolution Single Cluster Actual vs. Predicted Inspector")
+            single_cid_choice = st.selectbox(
+                "Select Tectonic Chunk to Inspect",
+                [f"[{cid}] {cinfo['name']}" for cid, cinfo in regional_metrics_data.items()],
+                key="avp_single_cid_select"
+            )
+            s_cid = int(single_cid_choice.split("]")[0].replace("[", ""))
+            s_cinfo = regional_metrics_data.get(str(s_cid), {})
+            
+            c_data = df_dataset[df_dataset["cluster_id"] == s_cid]
+            if len(c_data) > 0 and str(s_cid) in regional_models:
+                sample_evts = c_data.sample(min(600, len(c_data)), random_state=42)
+                actual_m = sample_evts["mag"].to_numpy()
+                pred_m = regional_models[str(s_cid)].predict(sample_evts[feat_cols])
+                
+                min_v = float(min(actual_m.min(), pred_m.min())) - 0.2
+                max_v = float(max(actual_m.max(), pred_m.max())) + 0.2
+                
+                sp_c1, sp_c2 = st.columns([1.3, 0.7])
+                with sp_c1:
+                    fig_single = go.Figure()
+                    fig_single.add_trace(go.Scatter(
+                        x=actual_m,
+                        y=pred_m,
+                        mode="markers",
+                        marker=dict(size=6, color=cluster_colors[s_cid], opacity=0.7),
+                        name="Observed Events",
+                        text=sample_evts["place"],
+                        hovertemplate="<b>%{text}</b><br>Actual: M %{x:.2f}<br>Predicted: M %{y:.2f}<extra></extra>"
+                    ))
+                    fig_single.add_trace(go.Scatter(
+                        x=[min_v, max_v],
+                        y=[min_v, max_v],
+                        mode="lines",
+                        line=dict(color="#f43f5e", width=2.5, dash="dash"),
+                        name="Ideal 1:1 Fit (y = x)"
+                    ))
+                    slope, intercept = np.polyfit(actual_m, pred_m, 1)
+                    t_x = np.linspace(min_v, max_v, 100)
+                    t_y = slope * t_x + intercept
+                    fig_single.add_trace(go.Scatter(
+                        x=t_x,
+                        y=t_y,
+                        mode="lines",
+                        line=dict(color="#10b981", width=3),
+                        name=f"Empirical OLS Trendline (Slope: {slope:.2f})"
+                    ))
+                    fig_single.update_layout(
+                        **DARK_LAYOUT,
+                        height=420,
+                        title=f"Actual vs Predicted Magnitudes: {s_cinfo.get('name')}",
+                        xaxis_title="Actual Richter Magnitude (M)",
+                        yaxis_title="Predicted Richter Magnitude (M)",
+                        legend=dict(orientation="h", yanchor="bottom", y=-0.25, xanchor="center", x=0.5)
+                    )
+                    st.plotly_chart(fig_single, use_container_width=True)
+                    
+                with sp_c2:
+                    st.markdown("##### 📊 Regional Accuracy Metrics")
+                    st.metric("Local Model MAE", f"± {s_cinfo.get('mae', 0.28):.4f} M")
+                    st.metric("Local Model RMSE", f"{s_cinfo.get('rmse', 0.39):.4f} M")
+                    st.metric("Local R² Determination", f"{s_cinfo.get('r2', 0.78):.4f}")
+                    st.metric("Fitted Trendline Slope", f"{slope:.2f}")
+                    
+                    resids = actual_m - pred_m
+                    fig_res = px.histogram(resids, nbins=25, title="Residual Errors (Actual - Predicted)", color_discrete_sequence=["#10b981"])
+                    fig_res.add_vline(x=0, line_dash="dash", line_color="#f43f5e")
+                    fig_res.update_layout(**DARK_LAYOUT, height=200)
+                    st.plotly_chart(fig_res, use_container_width=True)
+
+    # --------------------------------------------------------------------------
+    # SUB-TAB 4: INTERACTIVE AREA-WISE PREDICTION SIMULATOR
+    # --------------------------------------------------------------------------
+    with cluster_tabs[3]:
         st.markdown("#### 🎯 Interactive Area-Wise Magnitude Prediction & Chunk Simulator")
         st.caption("Input custom hypocentral parameters or choose a preset to witness real-time tectonic chunk mapping and compare localized vs global forecasts:")
 
@@ -1135,9 +1285,9 @@ elif app_mode == "🌍 Tectonic Clusters & Area Predictions":
         """, unsafe_allow_html=True)
 
     # --------------------------------------------------------------------------
-    # SUB-TAB 4: ALL-CLUSTERS BENCHMARK LEADERBOARD
+    # SUB-TAB 5: ALL-CLUSTERS BENCHMARK LEADERBOARD
     # --------------------------------------------------------------------------
-    with cluster_tabs[3]:
+    with cluster_tabs[4]:
         st.markdown("#### 📊 All-Clusters Benchmark Leaderboard & Comparative Summary")
         st.caption("Side-by-side performance comparison of all 8 tectonic Earth chunks and their respective local expert models:")
 
